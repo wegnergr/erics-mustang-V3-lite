@@ -6,11 +6,16 @@ var currentContactIndex = 0;
 
 // Functions
 function initApplication() {
-    console.log('Mustang Lite - Starting!'); 
+    console.log('Mustang v3 Lite - Starting!'); 
+    viewCurrentContact();
 }
 
 function setStatus(status) {
     document.getElementById("statusID").innerHTML = status;    
+}
+
+function zipBlurFunction() {
+    ZipToCityState();
 }
 
 function importContacts() {
@@ -34,11 +39,18 @@ function saveContactsToServer() {
 
 function loadContactsFromServer() {
     console.log("loadContactsFromServer()");
+
+    // Clear the current contacts.
+    contactArray.length = 0;
+
     xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             contactArray = JSON.parse(this.responseText);
             setStatus("Loaded contacts (" + contactArray.length + ")");
+
+            currentContactIndex = 0;
+            viewCurrentContact()
         }
     };
 
@@ -61,7 +73,7 @@ function viewCurrentContact() {
     document.getElementById("zipID").value = currentContact.zip;  
 
     // Todo: Add additional fields.
-    document.getElementById("statusID").innerHTML = "Status: Viewing contact " + (currentContactIndex+1) + " of " + contactArray.length;
+    document.getElementById("statusID").innerHTML = "Viewing contact " + (currentContactIndex+1) + " of " + contactArray.length;
 }
 
 function previous() {
@@ -80,7 +92,6 @@ function next() {
     }
     currentContact = contactArray[currentContactIndex];
     viewCurrentContact();
-    console.log('next()'); 
     
     // Todo: Disable next button when there is no next item.
     // Todo: Save changed items to contacts array and resort array.
@@ -96,10 +107,6 @@ function remove() {
     console.log('remove()');
 
     // Todo: Implement delete functionality by deleting element from array.
-}
-
-function zipBlurFunction() {
-    ZipToCityState();
 }
 
 function ZipToCityState() {
