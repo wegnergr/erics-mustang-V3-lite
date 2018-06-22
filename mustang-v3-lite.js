@@ -108,16 +108,10 @@ function zipFocusFunction() {
 }
 
 function zipBlurFunction() {
-    getPlace();
+    ZipToCityState();
 }
 
-function keyPressed() {
-    console.log('keyPressed()');
-
-    // This type of function should be useful in search as it implements keyPressed.
-}
-
-function getPlace() {
+function ZipToCityState() {
     var zip = document.getElementById("zipID").value
     console.log("zip:"+zip);
 
@@ -128,7 +122,7 @@ function getPlace() {
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
-            console.log("result:"+result);
+            console.log("ZipToCityState Result:" + result);
             var place = result.split(', ');
             if (document.getElementById("cityID").value == "")
                 document.getElementById("cityID").value = place[0];
@@ -138,23 +132,11 @@ function getPlace() {
     }
     xhr.open("GET", "zip-to-city-state.php?zip=" + zip);
     xhr.send(null);
-
-    calltfile();
-}
-
-function calltfile() {
-    console.log("Calling calltfile!");
-    var tfileRequest = new XMLHttpRequest();
-    tfileRequest.onload = function() {
-        console.log("tfile-result:" + tfileRequest.responseText);
-    }
-    tfileRequest.open("GET", "tfile.php");
-    tfileRequest.send();
 }
 
 function initApplication() {
     console.log('Mustang Lite - Starting!'); 
-    //loadIndex();
+
     //loadContactsFromPHP();
 }
 
