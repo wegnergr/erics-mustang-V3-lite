@@ -13,7 +13,7 @@ function importContacts() {
 
 function loadContacts() {
     console.log("loadContacts()");
-    loadContactsFromPHP();
+    //loadContactsFromPHP();
 }
 
 function saveContacts() {
