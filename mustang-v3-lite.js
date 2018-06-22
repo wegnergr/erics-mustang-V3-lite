@@ -14,21 +14,17 @@ function importContacts() {
 function saveContactsToServer() {
     console.log("saveContacts()");
     
-    obj = contactArray;
-    dbParam = JSON.stringify(obj);
+    //obj = contactArray;
+    //dbParam = JSON.stringify(obj);
     xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             console.log('**Output**:' + this.responseText);
-            console.log('**Output done**:');
-
-            var testContacts = JSON.parse(this.responseText);
-            console.log(testContacts);
         }
     };
     xmlhttp.open("POST", "save-contacts.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlhttp.send("contacts=" + dbParam);   
+    xmlhttp.send("contacts=" + JSON.stringify(contactArray));   
 }
 
 function loadContactsFromServer() {
