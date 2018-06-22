@@ -19,6 +19,10 @@ function saveContacts() {
     console.log("saveContacts()");
 }
 
+function logContacts() {
+    console.log("Contacts: " + contactsArray);
+}
+
 function viewCurrentContact() {
     currentContact = contactArray[currentContactIndex];
     console.log(currentContact);
