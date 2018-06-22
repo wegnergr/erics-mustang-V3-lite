@@ -37,7 +37,7 @@ function saveContacts() {
 }
 
 function logContacts() {
-    console.log("Contacts: ");
+    console.log("ContactArray: ");
     console.log(contactArray);
 }
 
