@@ -12,10 +12,7 @@ function importContacts() {
 }
 
 function saveContactsToServer() {
-    console.log("saveContacts()");
-    
-    //obj = contactArray;
-    //dbParam = JSON.stringify(obj);
+    console.log("saveContactsToServer()");
     xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -203,19 +200,3 @@ function loadNextContact(URL) {
     contactRequest.send();
 }
 
-function executeAjaxAndPhp() {
-    var request = new XMLHttpRequest();
-    request.open('GET', 'hello-world.php');
-    request.onload = function() {
-        console.log("Response:" + request.responseText);
-
-        var responseObject = JSON.parse(request.responseText);
-        if (responseObject.firstWord != "Hello") {
-            document.getElementById("id-ajaxandphp").innerHTML = "Error: " + request.responseText;
-        }
-        else {
-            document.getElementById("id-ajaxandphp").innerHTML = "<em>Success:</em> " + responseObject.firstWord + " " + responseObject.secondWord + "<br><br>Data:" + request.responseText;
-        }
-    }
-    request.send();
-}
