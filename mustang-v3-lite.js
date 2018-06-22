@@ -11,18 +11,7 @@ function importContacts() {
     loadIndexAndContacts();
 }
 
-function loadContacts() {
-    console.log("loadContacts()");
-    //loadContactsFromPHP();
-}
-
-
-function loadContacts2() {
-    console.log("loadContacts2()");
-    //loadContactsFromPHP();
-}
-
-function saveContacts() {
+function saveContactsToServer() {
     console.log("saveContacts()");
     
     obj = contactArray;
@@ -40,6 +29,11 @@ function saveContacts() {
     xmlhttp.open("POST", "save-contacts.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("contacts=" + dbParam);   
+}
+
+function loadContactsFromServer() {
+    console.log("loadContactsFromServer()");
+    loadContactsFromPHP();
 }
 
 function logContacts() {
