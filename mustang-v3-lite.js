@@ -7,7 +7,11 @@ var currentContactIndex = 0;
 // Functions
 function initApplication() {
     console.log('Mustang v3 Lite - Starting!'); 
-    viewCurrentContact();
+    document.getElementById("nameID").value = "";   
+    document.getElementById("emailID").value = "";   
+    document.getElementById("cityID").value = "";   
+    document.getElementById("stateID").value = "";
+    document.getElementById("zipID").value = "";  
 }
 
 function setStatus(status) {
