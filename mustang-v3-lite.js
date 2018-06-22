@@ -20,7 +20,7 @@ function saveContacts() {
 }
 
 function logContacts() {
-    console.log("Contacts: " + contactsArray);
+    console.log("Contacts: " + contactArray);
 }
 
 function viewCurrentContact() {
