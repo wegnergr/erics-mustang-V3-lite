@@ -123,7 +123,7 @@ function getPlace() {
                 document.getElementById("stateID").value = place[1];
         }
     }
-    xhr.open("GET", "getCityState.php?zip=" + zip);
+    xhr.open("GET", "zip-to-city-state.php?zip=" + zip);
     xhr.send(null);
 
     calltfile();
