@@ -141,9 +141,9 @@ function calltfile() {
 
 function initApplication() {
     console.log('Mustang Lite - Starting!'); 
-    //loadIndex();
+    loadIndex();
 
-    loadContactsFromPHP();
+    //loadContactsFromPHP();
 }
 
 function loadIndex() {
