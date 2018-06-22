@@ -4,8 +4,15 @@ var contactArray = [];
 var loadingContact = 0;
 var currentContactIndex = 0; 
 
-
 // Functions
+function initApplication() {
+    console.log('Mustang Lite - Starting!'); 
+}
+
+function setStatus(status) {
+    document.getElementById("statusID").innerHTML = status;    
+}
+
 function importContacts() {
     console.log("importContacts()");
     loadIndexAndContacts();
@@ -17,6 +24,7 @@ function saveContactsToServer() {
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             console.log('**Output**:' + this.responseText);
+            setStatus(this.responseText)
         }
     };
     xmlhttp.open("POST", "save-contacts.php", true);
@@ -26,7 +34,18 @@ function saveContactsToServer() {
 
 function loadContactsFromServer() {
     console.log("loadContactsFromServer()");
-    loadContactsFromPHP();
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("Response: " + this.responseText);
+
+            contactArray = JSON.parse(this.responseText);
+            console.log(contactArray);
+        }
+    };
+
+    xmlhttp.open("GET", "load-contacts.php", true);
+    xmlhttp.send();   
 }
 
 function logContacts() {
@@ -72,38 +91,13 @@ function next() {
 function add() {
     console.log('add()**');
 
-
     // Todo: Implement add functionality by inserting new element into array.
-}
-
-function loadContactsFromPHP() {
-    console.log('loadContactsFromPHP()**');
-
-    xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-
-            console.log("Response: " + this.responseText);
-            contactArray = JSON.parse(this.responseText);
-            console.log(contactArray);
-        }
-    };
-
-    xmlhttp.open("GET", "load-contacts.php", true);
-    xmlhttp.send();   
 }
 
 function remove() {
     console.log('remove()');
 
-    loadContactsFromPHP();
     // Todo: Implement delete functionality by deleting element from array.
-}
-
-function zipFocusFunction() {
-    console.log('focusFunction()');
-
-    // Todo: Remove the function as it is not needed.
 }
 
 function zipBlurFunction() {
@@ -131,12 +125,6 @@ function ZipToCityState() {
     }
     xhr.open("GET", "zip-to-city-state.php?zip=" + zip);
     xhr.send(null);
-}
-
-function initApplication() {
-    console.log('Mustang Lite - Starting!'); 
-
-    //loadContactsFromPHP();
 }
 
 function loadIndexAndContacts() {
@@ -174,29 +162,23 @@ function loadNextContact(URL) {
     contactRequest = new XMLHttpRequest();
     contactRequest.open('GET', URL);
     contactRequest.onload = function() {
-        console.log(contactRequest.responseText);
-        var contact;
-        contact = JSON.parse(contactRequest.responseText);
-        console.log("Contact: " + contact.firstName);
+        var contact = JSON.parse(contactRequest.responseText);
         contactArray.push(contact);
 
         document.getElementById("contactsID").innerHTML = JSON.stringify(contactArray);
-
-        document.getElementById("statusID").innerHTML = "Status: Loading " + contact.firstName + " " + contact.lastName;
+        document.getElementById("statusID").innerHTML = "Loading " + contact.firstName + " " + contact.lastName;
 
         loadingContact++;
         if (contactURLArray.length > loadingContact) {
             loadNextContact(contactURLArray[loadingContact]);
         }
         else {
-            document.getElementById("statusID").innerHTML = "Status: Contacts Loaded (" + contactURLArray.length + ")";
+            document.getElementById("statusID").innerHTML = "Contacts Loaded (" + contactURLArray.length + ")";
             viewCurrentContact()
-            console.log(contactArray);
 
             //Todo: Sort contacts array.
         }
     }
-
     contactRequest.send();
 }
 
