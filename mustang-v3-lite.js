@@ -6,6 +6,19 @@ var currentContactIndex = 0;
 
 
 // Functions
+function importContacts() {
+    console.log("importContacts()");
+    loadIndexAndContacts();
+}
+
+function loadContacts() {
+    console.log("loadContacts()");
+}
+
+function saveContacts() {
+    console.log("saveContacts()");
+}
+
 function viewCurrentContact() {
     currentContact = contactArray[currentContactIndex];
     console.log(currentContact);
@@ -141,12 +154,11 @@ function calltfile() {
 
 function initApplication() {
     console.log('Mustang Lite - Starting!'); 
-    loadIndex();
-
+    //loadIndex();
     //loadContactsFromPHP();
 }
 
-function loadIndex() {
+function loadIndexAndContacts() {
     // Load the Mustang index file.
     var indexRequest = new XMLHttpRequest();
     indexRequest.open('GET', 'https://mustang-index.azurewebsites.net/index.json');
