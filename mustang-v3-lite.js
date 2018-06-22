@@ -20,7 +20,9 @@ function saveContacts() {
 }
 
 function logContacts() {
-    console.log("Contacts: " + contactArray);
+    console.log("Contacts: ");
+    console.log(contactArray);
+
 }
 
 function viewCurrentContact() {
@@ -73,7 +75,6 @@ function add() {
             console.log(testContacts);
         }
     };
-    //xmlhttp.open("POST", "test-php-json.php", true);
     xmlhttp.open("POST", "save-contacts.php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("contacts=" + dbParam);   
