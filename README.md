@@ -1,1 +1,1 @@
-# z-mustang-v3-lite
+# The z-mustang-v3-lite porject is intented to be a reference implementation of the Mustang contact manager application.
