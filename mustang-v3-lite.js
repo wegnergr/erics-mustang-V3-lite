@@ -16,6 +16,12 @@ function loadContacts() {
     //loadContactsFromPHP();
 }
 
+
+function loadContacts2() {
+    console.log("loadContacts2()");
+    //loadContactsFromPHP();
+}
+
 function saveContacts() {
     console.log("saveContacts()");
     
